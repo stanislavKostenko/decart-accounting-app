@@ -1,0 +1,50 @@
+<mat-toolbar class="side-nav">
+  <ul class="side-nav-list">
+    <li class="side-nav-list-item"
+        matTooltip="Projects"
+        matTooltipClass="tooltip-bg"
+        [matTooltipPosition]="'right'"
+        [routerLink]="['projects']"
+        [routerLinkActive]="['link-active']"
+        [routerLinkActiveOptions]="{exact: true}"
+    >
+      <fa-icon [size]="size" [icon]="icons.home"></fa-icon>
+    </li>
+    <li class="side-nav-list-item"
+        matTooltip="Price list"
+        matTooltipClass="tooltip-bg"
+        [matTooltipPosition]="'right'"
+        [routerLink]="['price-list']"
+        [routerLinkActive]="['link-active']"
+    >
+      <fa-icon [size]="size" [icon]="icons.priceList"></fa-icon>
+    </li>
+    <li class="side-nav-list-item"
+        matTooltip="Estimates"
+        matTooltipClass="tooltip-bg"
+        [matTooltipPosition]="'right'"
+        [routerLink]="['estimates']"
+        [routerLinkActive]="['link-active']"
+    >
+      <fa-icon [size]="size" [icon]="icons.estimate"></fa-icon>
+    </li>
+    <li class="side-nav-list-item"
+        matTooltip="Chart"
+        matTooltipClass="tooltip-bg"
+        [matTooltipPosition]="'right'"
+        [routerLink]="['chart']"
+        [routerLinkActive]="['link-active']"
+    >
+      <fa-icon [size]="size" [icon]="icons.chart"></fa-icon>
+    </li>
+    <li class="side-nav-list-item"
+        matTooltip="Settings"
+        matTooltipClass="tooltip-bg"
+        [matTooltipPosition]="'right'"
+        [routerLink]="['settings']"
+        [routerLinkActive]="['link-active']"
+    >
+      <fa-icon [size]="size" [icon]="icons.settings"></fa-icon>
+    </li>
+  </ul>
+</mat-toolbar>

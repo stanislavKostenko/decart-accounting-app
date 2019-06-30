@@ -14,6 +14,14 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "paths": {
+      "@shared/*": ["app/shared/*"],
+      "@projects/*": ["app/modules/projects/*"],
+      "@price-list/*": ["app/modules/price-list/*"],
+      "@estimates/*": ["app/modules/estimates/*"],
+      "@settings/*": ["app/modules/projects/*"],
+      "@enums/*": ["app/enums/*"]
+    },
     "lib": [
       "es2018",
       "dom"
