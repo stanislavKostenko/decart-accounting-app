@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {StoreModule} from '@ngrx/store';
+import {NavigationActionTiming, StoreRouterConnectingModule} from '@ngrx/router-store';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -14,7 +15,9 @@ import {EstimatesModule} from './modules/estimates/estimates.module';
 import {SettingsModule} from './modules/settings/settings.module';
 import {reducers, metaReducers} from './reducers';
 import {environment} from '../environments/environment';
-import {AppEffects} from './app.effects';
+import {CustomSerializer} from './custom-route-serializer';
+import {ProjectsEffects} from './store/effects/projects.effects';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import {AppEffects} from './app.effects';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     SharedModule,
     ProjectsModule,
     PriceListModule,
@@ -31,7 +35,11 @@ import {AppEffects} from './app.effects';
     SettingsModule,
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    EffectsModule.forRoot([AppEffects])
+    EffectsModule.forRoot([ProjectsEffects]),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer,
+      navigationActionTiming: NavigationActionTiming.PostActivation,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

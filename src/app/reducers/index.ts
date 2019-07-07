@@ -5,14 +5,19 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
-import { environment } from '../../environments/environment';
+import {routerReducer, RouterReducerState} from '@ngrx/router-store';
+
+import {environment} from '../../environments/environment';
+import * as fromProjects from '../store/reducers/projects.reducer';
 
 export interface State {
-
+  router: RouterReducerState;
+  projects: fromProjects.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
-
+  router: routerReducer,
+  projects: fromProjects.reducer
 };
 
 

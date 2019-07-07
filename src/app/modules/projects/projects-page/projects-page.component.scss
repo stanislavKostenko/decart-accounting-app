@@ -6,8 +6,26 @@
   padding: $xlg-padding;
 }
 
-.container {
-  max-width: 250px;
-  width: 100%;
-  height: 300px;
+.page {
+  display: grid;
+  grid-template-rows: auto;
+  &-container {
+    max-width: 250px;
+    width: 100%;
+    height: 300px;
+
+    &-actions {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        margin-left: 5px;
+        &:first-child {
+          justify-self: flex-start;
+          margin-right: auto;
+          margin-left: 0;
+        }
+      }
+    }
+  }
 }

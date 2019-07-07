@@ -1,9 +1,23 @@
-import {faCalculator, faChartPie, faCog, faFileInvoiceDollar, faHome, faPlus} from '@fortawesome/free-solid-svg-icons';
+import {
+  faArchive,
+  faCalculator,
+  faChartPie,
+  faCog,
+  faFileInvoiceDollar,
+  faHome,
+  faPen,
+  faPlus,
+  faTrash
+} from '@fortawesome/free-solid-svg-icons';
+
 export const Icons = {
   home: faHome,
   priceList: faFileInvoiceDollar,
   estimate: faCalculator,
   settings: faCog,
   chart: faChartPie,
-  create: faPlus
+  create: faPlus,
+  delete: faTrash,
+  edit: faPen,
+  archive: faArchive
 };

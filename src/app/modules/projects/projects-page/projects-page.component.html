@@ -1,10 +1,50 @@
-<div class="container">
-  <app-card>
-    <ng-container ngProjectAs="title">Add project</ng-container>
-    <ng-container ngProjectAs="content">
-      <button mat-fab color="primary" class="card-content-btn">
-        <fa-icon [size]="size" [icon]="icons.create"></fa-icon>
-      </button>
-    </ng-container>
-  </app-card>
+<div class="page" #projectsPage [ngStyle]="{
+'grid-template-columns': 'repeat(' + repeat.toFixed() + ', 250px)',
+'grid-gap': gaps + 'px'
+}">
+  <div class="page-container">
+    <app-card>
+      <ng-container ngProjectAs="title">Add project</ng-container>
+      <ng-container ngProjectAs="content">
+        <button mat-fab
+                color="primary"
+                class="card-content-btn"
+                (click)="initDialog()"
+        >
+          <fa-icon [size]="size" [icon]="icons.create"></fa-icon>
+        </button>
+      </ng-container>
+    </app-card>
+  </div>
+  <div class="page-container"  *ngIf="projects$ | async as projects">
+    <app-card *ngFor="let project of projects">
+      <ng-container ngProjectAs="title">{{project.title}}</ng-container>
+      <ng-container ngProjectAs="content">{{project.description}}</ng-container>
+      <ng-container ngProjectAs="actions">
+        <div class="page-container-actions">
+          <button mat-mini-fab
+                  color="accent"
+                  matTooltip="Archived"
+                  matTooltipClass="tooltip-bg"
+          >
+            <fa-icon [icon]="icons.archive"></fa-icon>
+          </button>
+          <button mat-mini-fab
+                  color="primary"
+                  matTooltip="Edit"
+                  matTooltipClass="tooltip-bg"
+          >
+            <fa-icon [icon]="icons.edit"></fa-icon>
+          </button>
+          <button mat-mini-fab
+                  color="warn"
+                  matTooltip="Delete"
+                  matTooltipClass="tooltip-bg"
+          >
+            <fa-icon [icon]="icons.delete"></fa-icon>
+          </button>
+        </div>
+      </ng-container>
+    </app-card>
+  </div>
 </div>
