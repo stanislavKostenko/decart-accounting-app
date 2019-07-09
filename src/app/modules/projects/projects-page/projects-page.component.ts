@@ -1,20 +1,21 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
+import {tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {MatDialog} from '@angular/material';
 
 import * as fromProjects from '../../../store/reducers/projects.reducer';
 import {Icons} from '../../../enums/icons';
-import {Observable} from 'rxjs';
 import {Project} from '../../../interfaces/project';
 import {LoadProjects} from '../../../store/actions/projects.actions';
 import {selectProjects} from '../../../store/selectors/projects.selectors';
-import {tap} from 'rxjs/operators';
-import {MatDialog} from '@angular/material';
 import {CreateProjectDialogComponent} from '../../../shared/create-project-dialog/create-project-dialog.component';
 
 @Component({
   selector: 'app-projects-page',
   templateUrl: './projects-page.component.html',
-  styleUrls: ['./projects-page.component.scss']
+  styleUrls: ['./projects-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectsPageComponent implements OnInit {
   public icons = Icons;
@@ -24,7 +25,8 @@ export class ProjectsPageComponent implements OnInit {
   @ViewChild('projectsPage', {static: true}) projectsPage: ElementRef;
 
   constructor(private store: Store<fromProjects.State>,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -44,19 +46,14 @@ export class ProjectsPageComponent implements OnInit {
 
   initDialog() {
     const dialogRef = this.dialog.open(CreateProjectDialogComponent, {
-      width: '400px',
-      height: '400px'
+      minWidth: '400px',
+      minHeight: '400px',
+      panelClass: 'general-box',
+      backdropClass: 'general-dialog-backdrop',
+      hasBackdrop: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => console.log(result));
-  }
-
-  get repeat(): number {
-    return this.projectsPage.nativeElement.clientWidth / 250;
-  }
-
-  get gaps(): number {
-    return (this.projectsPage.nativeElement.clientWidth - (Number(this.repeat.toFixed()) * 250)) / 7;
   }
 
 }

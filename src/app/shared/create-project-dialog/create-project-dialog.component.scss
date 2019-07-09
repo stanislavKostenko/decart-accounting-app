@@ -1,0 +1,15 @@
+@import "abstracts/variables";
+
+.dialog {
+  &-header {
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &-text {
+        font-size: $h3-font-size;
+      }
+    }
+  }
+}

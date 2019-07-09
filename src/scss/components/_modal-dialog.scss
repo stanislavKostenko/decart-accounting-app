@@ -1,0 +1,11 @@
+.general-dialog-backdrop {
+  overflow: hidden;
+  background-color: rgba(203, 203, 203, 0.66);
+  filter: blur(15px);
+}
+
+.general-box {
+  .mat-dialog-container {
+    padding: 16px;
+  }
+}

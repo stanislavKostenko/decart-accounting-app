@@ -6,7 +6,7 @@ import {
   faFileInvoiceDollar,
   faHome,
   faPen,
-  faPlus,
+  faPlus, faTimes,
   faTrash
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -19,5 +19,6 @@ export const Icons = {
   create: faPlus,
   delete: faTrash,
   edit: faPen,
-  archive: faArchive
+  archive: faArchive,
+  close: faTimes
 };

@@ -1,7 +1,9 @@
 @import "themes/theme";
 @import "base/base";
+@import "base/typography";
 @import "components/tooltip";
 @import "components/buttons";
+@import "components/modal-dialog";
 
 body {
   height: 100vh;

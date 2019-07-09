@@ -1,0 +1,8 @@
+@import "abstracts/variables";
+
+.form {
+  &-field {
+    width: 100%;
+    padding: $xs-padding 0;
+  }
+}
