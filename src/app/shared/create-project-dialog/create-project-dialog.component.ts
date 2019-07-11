@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Icons} from '../../enums/icons';
 
 @Component({
@@ -9,10 +9,13 @@ import {Icons} from '../../enums/icons';
 })
 export class CreateProjectDialogComponent implements OnInit {
   public icons = Icons;
-  constructor(private dialogRef: MatDialogRef<CreateProjectDialogComponent>) {
+  public formObject: any;
+  constructor(private dialogRef: MatDialogRef<CreateProjectDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
+    this.formObject = this.data.object;
   }
 
   onCloseDialog() {

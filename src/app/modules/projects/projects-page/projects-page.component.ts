@@ -10,6 +10,7 @@ import {Project} from '../../../interfaces/project';
 import {LoadProjects} from '../../../store/actions/projects.actions';
 import {selectProjects} from '../../../store/selectors/projects.selectors';
 import {CreateProjectDialogComponent} from '../../../shared/create-project-dialog/create-project-dialog.component';
+import {emptyProjectForm} from '../../../mocks/form.mocks';
 
 @Component({
   selector: 'app-projects-page',
@@ -46,11 +47,13 @@ export class ProjectsPageComponent implements OnInit {
 
   initDialog() {
     const dialogRef = this.dialog.open(CreateProjectDialogComponent, {
-      minWidth: '400px',
-      minHeight: '400px',
+      maxWidth: '400px',
       panelClass: 'general-box',
       backdropClass: 'general-dialog-backdrop',
       hasBackdrop: true,
+      data: {
+        object: emptyProjectForm
+      }
     });
 
     dialogRef.afterClosed().subscribe((result) => console.log(result));

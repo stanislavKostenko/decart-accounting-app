@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormService} from '../services/form.service';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -6,10 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+  public form: FormGroup;
+  public controls: string[];
+  public addressControls: string[];
 
-  constructor() { }
+  @Input() object: any;
+
+  constructor(private formService: FormService) {
+  }
 
   ngOnInit() {
+    this.generateForm();
+  }
+
+  generateForm() {
+    this.form = new FormGroup({});
+    this.formService.generateForm(this.form, this.object);
+    this.generateControls(this.form);
+  }
+
+  generateControls(form: FormGroup) {
+    this.controls = this.formService.createArrayOfControls(form);
+    this.addressControls = this.formService.createArrayOfControls(form.controls.address);
+  }
+
+  get formControls() {
+    return this.form.controls;
   }
 
 }

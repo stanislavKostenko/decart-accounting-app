@@ -1,6 +1,9 @@
 @import "abstracts/variables";
 
 .dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   &-header {
     &-title {
       display: flex;
@@ -11,5 +14,10 @@
         font-size: $h3-font-size;
       }
     }
+  }
+
+  &-actions {
+    justify-self: flex-end;
+    margin-top: $base-margin;
   }
 }

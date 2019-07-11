@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {
   MatButtonModule,
   MatCardModule,
-  MatDialogModule,
+  MatDialogModule, MatExpansionModule,
   MatFormFieldModule,
   MatInputModule,
   MatToolbarModule,
@@ -11,30 +11,35 @@ import {
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import {SideBarComponent} from './side-bar/side-bar.component';
 import {CardComponent} from './card/card.component';
-import { CreateProjectDialogComponent } from './create-project-dialog/create-project-dialog.component';
-import { FormComponent } from './form/form.component';
+import {CreateProjectDialogComponent} from './create-project-dialog/create-project-dialog.component';
+import {FormComponent} from './form/form.component';
+import { AccordionComponent } from './accordion/accordion.component';
 
 @NgModule({
   declarations: [
     SideBarComponent,
     CardComponent,
     CreateProjectDialogComponent,
-    FormComponent
+    FormComponent,
+    AccordionComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     RouterModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatTooltipModule,
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatExpansionModule
   ],
   exports: [
     SideBarComponent,
@@ -45,7 +50,8 @@ import { FormComponent } from './form/form.component';
     CreateProjectDialogComponent,
     MatFormFieldModule,
     FormComponent,
-    MatInputModule
+    MatInputModule,
+    MatExpansionModule
   ]
 })
 export class SharedModule {

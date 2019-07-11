@@ -1,6 +1,19 @@
-<div class="form">
-  <mat-form-field class="form-field" appearance="outline">
-    <mat-label>Outline form field</mat-label>
-    <input matInput placeholder="Placeholder">
-  </mat-form-field>
+<div class="form" *ngIf="form" [formGroup]="form" >
+  <ng-container *ngFor="let control of controls">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>{{control | titlecase}}</mat-label>
+      <input matInput type="text" [formControlName]="control">
+    </mat-form-field>
+  </ng-container>
+  <app-accordion [formGroupName]="'address'">
+    <ng-container ngProjectAs="title">Address</ng-container>
+    <ng-container ngProjectAs="content">
+      <ng-container *ngFor="let item of addressControls">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>{{item | titlecase}}</mat-label>
+          <input matInput type="text" [formControlName]="item">
+        </mat-form-field>
+      </ng-container>
+    </ng-container>
+  </app-accordion>
 </div>

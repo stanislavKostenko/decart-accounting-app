@@ -3,7 +3,7 @@ export interface Project {
   description: string;
   id?: string;
   address: Address;
-  archived: boolean;
+  archived?: boolean;
 }
 
 export interface Address {
