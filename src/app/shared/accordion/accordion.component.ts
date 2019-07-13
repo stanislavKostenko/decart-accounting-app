@@ -16,7 +16,7 @@ export class AccordionComponent implements OnInit {
   }
 
   enableAnimation() {
-    setTimeout(() => this.isAnimationDisabled = false, 0);
+    setTimeout(() => this.isAnimationDisabled = false);
   }
 
 }

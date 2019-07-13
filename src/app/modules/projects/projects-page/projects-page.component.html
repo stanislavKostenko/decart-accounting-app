@@ -1,47 +1,51 @@
 <div class="page">
-  <div class="page-container">
-    <app-card>
-      <ng-container ngProjectAs="title">Add project</ng-container>
-      <ng-container ngProjectAs="content">
-        <button mat-fab
-                color="primary"
-                class="card-content-btn"
-                (click)="initDialog()"
-        >
-          <fa-icon [size]="size" [icon]="icons.create"></fa-icon>
-        </button>
-      </ng-container>
-    </app-card>
+  <div class="page-container" *ngIf="projects$ | async as projects">
+    <div class="page-container-card" *ngFor="let project of projects">
+      <app-card>
+        <ng-container ngProjectAs="title">{{project.title}}</ng-container>
+        <ng-container ngProjectAs="content">{{project.description}}</ng-container>
+        <ng-container ngProjectAs="actions">
+          <div class="page-container-card-actions">
+            <button mat-mini-fab
+                    color="accent"
+                    matTooltip="Archived"
+                    matTooltipClass="tooltip-bg"
+            >
+              <fa-icon [icon]="icons.archive"></fa-icon>
+            </button>
+            <button mat-mini-fab
+                    color="primary"
+                    matTooltip="Edit"
+                    matTooltipClass="tooltip-bg"
+            >
+              <fa-icon [icon]="icons.edit"></fa-icon>
+            </button>
+            <button mat-mini-fab
+                    color="warn"
+                    matTooltip="Delete"
+                    matTooltipClass="tooltip-bg"
+            >
+              <fa-icon [icon]="icons.delete"></fa-icon>
+            </button>
+          </div>
+        </ng-container>
+      </app-card>
+    </div>
   </div>
-  <div class="page-container"  *ngIf="projects$ | async as projects">
-    <app-card *ngFor="let project of projects">
-      <ng-container ngProjectAs="title">{{project.title}}</ng-container>
-      <ng-container ngProjectAs="content">{{project.description}}</ng-container>
-      <ng-container ngProjectAs="actions">
-        <div class="page-container-actions">
-          <button mat-mini-fab
-                  color="accent"
-                  matTooltip="Archived"
-                  matTooltipClass="tooltip-bg"
-          >
-            <fa-icon [icon]="icons.archive"></fa-icon>
-          </button>
-          <button mat-mini-fab
+  <div class="page-container">
+    <div class="page-container-card">
+      <app-card>
+        <ng-container ngProjectAs="title">Add project</ng-container>
+        <ng-container ngProjectAs="content">
+          <button mat-fab
                   color="primary"
-                  matTooltip="Edit"
-                  matTooltipClass="tooltip-bg"
+                  class="card-content-btn"
+                  (click)="initDialog()"
           >
-            <fa-icon [icon]="icons.edit"></fa-icon>
+            <fa-icon [size]="size" [icon]="icons.create"></fa-icon>
           </button>
-          <button mat-mini-fab
-                  color="warn"
-                  matTooltip="Delete"
-                  matTooltipClass="tooltip-bg"
-          >
-            <fa-icon [icon]="icons.delete"></fa-icon>
-          </button>
-        </div>
-      </ng-container>
-    </app-card>
+        </ng-container>
+      </app-card>
+    </div>
   </div>
 </div>

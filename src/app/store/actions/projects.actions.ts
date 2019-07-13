@@ -5,7 +5,8 @@ import {HttpErrorResponse} from '@angular/common/http';
 export enum ActionTypes {
   LoadProjects = '[Projects Page] Load Projects',
   LoadedProjects = '[Projects Page] Loaded Projects',
-  ProjectsErrors = '[Projects Page] Projects Errors'
+  ProjectsErrors = '[Projects Page] Projects Errors',
+  CreateProject = '[Projects Page] Create Project'
 }
 
 export class LoadProjects implements Action {
@@ -26,4 +27,10 @@ export class ProjectsErrors implements Action {
   }
 }
 
-export type ProjectsActions = LoadProjects & LoadedProjects & ProjectsErrors;
+export class CreateProject implements Action {
+  readonly type = ActionTypes.CreateProject;
+  constructor(public payload: Project) {}
+}
+
+export type ProjectsActions = LoadProjects & LoadedProjects & ProjectsErrors
+  & CreateProject;

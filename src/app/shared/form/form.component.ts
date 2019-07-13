@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormService} from '../services/form.service';
 import {FormGroup} from '@angular/forms';
 
@@ -13,6 +13,7 @@ export class FormComponent implements OnInit {
   public addressControls: string[];
 
   @Input() object: any;
+  @Output() formValue: EventEmitter<any> = new EventEmitter();
 
   constructor(private formService: FormService) {
   }
@@ -34,6 +35,10 @@ export class FormComponent implements OnInit {
 
   get formControls() {
     return this.form.controls;
+  }
+
+  onSubmit() {
+    this.formValue.next(this.form.value);
   }
 
 }

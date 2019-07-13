@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Icons} from '../../enums/icons';
 
@@ -10,6 +10,8 @@ import {Icons} from '../../enums/icons';
 export class CreateProjectDialogComponent implements OnInit {
   public icons = Icons;
   public formObject: any;
+
+  @Output() dialogDataOutput: EventEmitter<any> = new EventEmitter();
   constructor(private dialogRef: MatDialogRef<CreateProjectDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
@@ -18,8 +20,8 @@ export class CreateProjectDialogComponent implements OnInit {
     this.formObject = this.data.object;
   }
 
-  onCloseDialog() {
-    this.dialogRef.close();
+  onCloseDialog(value?: any) {
+    this.dialogRef.close(value);
   }
 
 }

@@ -1,0 +1,9 @@
+@import 'abstracts/variables';
+
+mat-expansion-panel-header.mat-expansion-panel-header {
+  padding: 0 $base-padding;
+}
+
+.mat-expansion-panel-content > .mat-expansion-panel-body {
+  padding: 0 $base-padding $base-padding;
+}

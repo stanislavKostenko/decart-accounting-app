@@ -20,4 +20,9 @@ export class ProjectsService {
       map((response: Project[]) => response)
     );
   }
+
+  createProject(project: Project): Observable<Project> {
+    return this.http.post<Project>(this.baseUrl + 'projects/create', project)
+      .pipe(map((response: Project) => response));
+  }
 }

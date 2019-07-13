@@ -1,13 +1,13 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material';
 
 import * as fromProjects from '../../../store/reducers/projects.reducer';
 import {Icons} from '../../../enums/icons';
 import {Project} from '../../../interfaces/project';
-import {LoadProjects} from '../../../store/actions/projects.actions';
+import {CreateProject, LoadProjects} from '../../../store/actions/projects.actions';
 import {selectProjects} from '../../../store/selectors/projects.selectors';
 import {CreateProjectDialogComponent} from '../../../shared/create-project-dialog/create-project-dialog.component';
 import {emptyProjectForm} from '../../../mocks/form.mocks';
@@ -16,7 +16,6 @@ import {emptyProjectForm} from '../../../mocks/form.mocks';
   selector: 'app-projects-page',
   templateUrl: './projects-page.component.html',
   styleUrls: ['./projects-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectsPageComponent implements OnInit {
   public icons = Icons;
@@ -26,8 +25,7 @@ export class ProjectsPageComponent implements OnInit {
   @ViewChild('projectsPage', {static: true}) projectsPage: ElementRef;
 
   constructor(private store: Store<fromProjects.State>,
-              private dialog: MatDialog,
-              private cdr: ChangeDetectorRef) {
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -46,7 +44,12 @@ export class ProjectsPageComponent implements OnInit {
   }
 
   initDialog() {
-    const dialogRef = this.dialog.open(CreateProjectDialogComponent, {
+    const dialogRef = this.dialog.open(CreateProjectDialogComponent, this.dialogConfig);
+    this.handleDialogData(dialogRef);
+  }
+
+  get dialogConfig(): MatDialogConfig {
+    return {
       maxWidth: '400px',
       panelClass: 'general-box',
       backdropClass: 'general-dialog-backdrop',
@@ -54,9 +57,15 @@ export class ProjectsPageComponent implements OnInit {
       data: {
         object: emptyProjectForm
       }
-    });
+    };
+  }
 
-    dialogRef.afterClosed().subscribe((result) => console.log(result));
+  handleDialogData(dialogRef: MatDialogRef<CreateProjectDialogComponent>) {
+    dialogRef.afterClosed().subscribe((result) => this.createProject(result));
+  }
+
+  createProject(project: Project) {
+    this.store.dispatch(new CreateProject(project));
   }
 
 }

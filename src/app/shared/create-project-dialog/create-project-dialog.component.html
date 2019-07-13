@@ -2,19 +2,14 @@
   <div class="dialog-header">
     <div class="dialog-header-title">
       <h3 class="dialog-header-title-text">Create project</h3>
-      <button mat-icon-button>
+      <button mat-icon-button (click)="onCloseDialog()">
         <fa-icon [size]="'lg'" [icon]="icons.close"></fa-icon>
       </button>
     </div>
   </div>
   <div class="dialog-content">
-    <app-form [object]="formObject"></app-form>
-  </div>
-  <div class="dialog-actions">
-    <button mat-raised-button
-            color="primary"
-            class="btn w-100"
-            (click)="onCloseDialog()"
-    >Save</button>
+    <app-form [object]="formObject"
+              (formValue)="onCloseDialog($event)"
+    ></app-form>
   </div>
 </div>
