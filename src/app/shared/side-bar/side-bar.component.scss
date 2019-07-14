@@ -1,4 +1,11 @@
 @import "abstracts/variables";
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $side-nav-width;
+}
 .side-nav {
   height: 100vh;
   padding: $base-padding 0;

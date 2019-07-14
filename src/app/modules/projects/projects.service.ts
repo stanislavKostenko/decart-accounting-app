@@ -25,4 +25,14 @@ export class ProjectsService {
     return this.http.post<Project>(this.baseUrl + 'projects/create', project)
       .pipe(map((response: Project) => response));
   }
+
+  deleteProject(projectId: string): Observable<Project> {
+    return this.http.delete<Project>(this.baseUrl + `projects/${projectId}`)
+      .pipe(map((response) => response));
+  }
+
+  updateProject(project: Project): Observable<Project> {
+    return this.http.put<Project>(this.baseUrl + `projects/${project.id}`, project)
+      .pipe(map((response: Project) => response));
+  }
 }

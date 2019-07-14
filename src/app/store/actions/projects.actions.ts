@@ -6,7 +6,9 @@ export enum ActionTypes {
   LoadProjects = '[Projects Page] Load Projects',
   LoadedProjects = '[Projects Page] Loaded Projects',
   ProjectsErrors = '[Projects Page] Projects Errors',
-  CreateProject = '[Projects Page] Create Project'
+  CreateProject = '[Projects Page] Create Project',
+  DeleteProject = '[Projects Page] Delete Project',
+  UpdateProject = '[Projects Page] Update Project'
 }
 
 export class LoadProjects implements Action {
@@ -29,8 +31,23 @@ export class ProjectsErrors implements Action {
 
 export class CreateProject implements Action {
   readonly type = ActionTypes.CreateProject;
-  constructor(public payload: Project) {}
+
+  constructor(public payload: Project) {
+  }
+}
+
+export class UpdateProject implements Action {
+  readonly type = ActionTypes.UpdateProject;
+
+  constructor(public payload: Project) {
+  }
+}
+
+export class DeleteProject implements Action {
+  readonly type = ActionTypes.DeleteProject;
+
+  constructor(public payload: string) {}
 }
 
 export type ProjectsActions = LoadProjects & LoadedProjects & ProjectsErrors
-  & CreateProject;
+  & CreateProject & DeleteProject & UpdateProject;

@@ -1,0 +1,14 @@
+@import 'abstracts/functions';
+
+@mixin fontSize($value) {
+  font-size: $value;
+  font-size: convertToRem($value);
+}
+
+@mixin padding($top, $right, $bottom, $left) {
+  padding: $top $right $bottom $left
+}
+
+@mixin margin($top, $right, $bottom, $left) {
+  margin: $top $right $bottom $left
+}

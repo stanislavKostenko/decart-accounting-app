@@ -1,11 +1,15 @@
 <div class="form" *ngIf="form" [formGroup]="form" >
-  <ng-container *ngFor="let control of controls">
-    <mat-form-field class="form-field" appearance="outline">
+  <ng-container *ngFor="let control of controls" [ngSwitch]="control">
+    <mat-form-field *ngSwitchDefault class="form-field" appearance="outline">
       <mat-label>{{control | titlecase}}</mat-label>
       <input matInput type="text" [formControlName]="control">
     </mat-form-field>
+    <mat-form-field *ngSwitchCase="fields.Square" class="form-field" appearance="outline">
+      <mat-label>{{control | titlecase}}</mat-label>
+      <input matInput type="number" [formControlName]="control">
+    </mat-form-field>
   </ng-container>
-  <app-accordion [formGroupName]="'address'">
+  <app-accordion *ngIf="object.address" [formGroupName]="'address'">
     <ng-container ngProjectAs="title">Address</ng-container>
     <ng-container ngProjectAs="content">
       <ng-container *ngFor="let item of addressControls">

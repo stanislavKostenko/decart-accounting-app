@@ -1,4 +1,5 @@
 @import "abstracts/variables";
+@import "abstracts/mixins";
 
 .dialog {
   display: flex;
@@ -11,13 +12,13 @@
       align-items: center;
 
       &-text {
-        font-size: $h3-font-size;
+        @include fontSize($h3-font-size);
       }
     }
   }
 
   &-actions {
     justify-self: flex-end;
-    margin-top: $base-margin;
+    @include margin($base-margin, null, null, null)
   }
 }

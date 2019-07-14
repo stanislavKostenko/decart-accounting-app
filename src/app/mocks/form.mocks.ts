@@ -11,9 +11,14 @@ export const emptyAddressForm: Address = {
 export const emptyProjectForm: Project = {
   title: '',
   description: '',
+  square: null,
   address: emptyAddressForm
 };
 
 export const notDisplayedFields = [
   FormFields.Address,
+  FormFields.Id,
+  FormFields._Id,
+  FormFields.CreatedDate,
+  FormFields.Archived,
 ];

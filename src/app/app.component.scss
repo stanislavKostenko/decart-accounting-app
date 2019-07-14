@@ -1,5 +1,10 @@
+@import 'abstracts/variables';
 .container {
   display: flex;
   justify-content: stretch;
   position: relative;
+
+  router-outlet {
+    padding-left: $side-nav-width;
+  }
 }

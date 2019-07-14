@@ -1,16 +1,16 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {MatDialog, MatDialogConfig, MatDialogRef} from '@angular/material';
 
 import * as fromProjects from '../../../store/reducers/projects.reducer';
 import {Icons} from '../../../enums/icons';
 import {Project} from '../../../interfaces/project';
-import {CreateProject, LoadProjects} from '../../../store/actions/projects.actions';
+import {CreateProject, DeleteProject, LoadProjects} from '../../../store/actions/projects.actions';
 import {selectProjects} from '../../../store/selectors/projects.selectors';
 import {CreateProjectDialogComponent} from '../../../shared/create-project-dialog/create-project-dialog.component';
 import {emptyProjectForm} from '../../../mocks/form.mocks';
+import {DialogService} from '../../../shared/services/dialog.service';
 
 @Component({
   selector: 'app-projects-page',
@@ -21,11 +21,12 @@ export class ProjectsPageComponent implements OnInit {
   public icons = Icons;
   public size: string = 'lg';
   public projects$: Observable<Project[]>;
+  public emptyProjectForm = emptyProjectForm;
 
   @ViewChild('projectsPage', {static: true}) projectsPage: ElementRef;
 
   constructor(private store: Store<fromProjects.State>,
-              private dialog: MatDialog) {
+              private dialogService: DialogService) {
   }
 
   ngOnInit() {
@@ -43,29 +44,39 @@ export class ProjectsPageComponent implements OnInit {
     this.store.dispatch(new LoadProjects());
   }
 
-  initDialog() {
-    const dialogRef = this.dialog.open(CreateProjectDialogComponent, this.dialogConfig);
-    this.handleDialogData(dialogRef);
+  onInitDialog(object: Project, edit: boolean) {
+    const dialogRef = this.dialogService.openDialog(CreateProjectDialogComponent, {object, edit});
+    this.handleDialogData(dialogRef, object.id);
   }
 
-  get dialogConfig(): MatDialogConfig {
-    return {
-      maxWidth: '400px',
-      panelClass: 'general-box',
-      backdropClass: 'general-dialog-backdrop',
-      hasBackdrop: true,
-      data: {
-        object: emptyProjectForm
+  handleDialogData(dialogRef: any, projectId?: string) {
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) {
+        return;
       }
-    };
+      this.resultCase(result, projectId);
+    });
   }
 
-  handleDialogData(dialogRef: MatDialogRef<CreateProjectDialogComponent>) {
-    dialogRef.afterClosed().subscribe((result) => this.createProject(result));
+  resultCase(result: { formValue: Project, edit: boolean }, projectId: string) {
+    switch (result.edit) {
+      case false:
+        return this.createProject(result.formValue);
+      default:
+        return this.updateProject(result.formValue, projectId);
+    }
   }
 
   createProject(project: Project) {
     this.store.dispatch(new CreateProject(project));
+  }
+
+  updateProject(project: Project, projectId: string) {
+    project.id = projectId;
+  }
+
+  deleteProject(projectId: string) {
+    this.store.dispatch(new DeleteProject(projectId));
   }
 
 }

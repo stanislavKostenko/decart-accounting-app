@@ -1,23 +1,25 @@
+@import 'abstracts/mixins';
+
 // Padding
-$base-padding: 15 / 16 * 1rem;
-$xs-padding: 5 / 16 * 1rem;
-$sm-padding: 10 / 16 * 1rem;
-$lg-padding: 20 / 16 * 1rem;
-$xlg-padding: 25 / 16 * 1rem;
+$base-padding: 15px;
+$xs-padding: 5px;
+$sm-padding: 10px;
+$lg-padding: 20px;
+$xlg-padding: 25px;
 
 // Margin
-$base-margin: 15 / 16 * 1rem;
-$xs-margin: 5 / 16 * 1rem;
-$sm-margin: 10 / 16 * 1rem;
-$lg-margin: 20 / 16 * 1rem;
-$xlg-margin: 25 / 16 * 1rem;
+$base-margin: 15px;
+$xs-margin: 5px;
+$sm-margin: 10px;
+$lg-margin: 20px;
+$xlg-margin: 25px;
 
 // Font-size
-$base-font-size: 16 / 16 * 1rem;
-$h1-font-size: 40 / 16 * 1rem;
-$h2-font-size: 36 / 16 * 1rem;
-$h3-font-size: 28 / 16 * 1rem;
-$h4-font-size: 24 / 16 * 1rem;
+$base-font-size: 16px;
+$h1-font-size: 40px;
+$h2-font-size: 36px;
+$h3-font-size: 28px;
+$h4-font-size: 24px;
 
 // Font-weight
 $light-font-weight: 300;
@@ -28,4 +30,8 @@ $extra-bold-font-weight: 800;
 // Colors
 $white: #ffffff;
 $dark: #212121;
+
+// Component's sizes
+$side-nav-width: 50px;
+$card-content-max-height: 236px;
 

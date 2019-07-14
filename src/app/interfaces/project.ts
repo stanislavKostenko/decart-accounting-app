@@ -3,6 +3,7 @@ export interface Project {
   description: string;
   id?: string;
   address: Address;
+  square: number;
   archived?: boolean;
 }
 

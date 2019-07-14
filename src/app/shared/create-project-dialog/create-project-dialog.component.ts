@@ -10,6 +10,7 @@ import {Icons} from '../../enums/icons';
 export class CreateProjectDialogComponent implements OnInit {
   public icons = Icons;
   public formObject: any;
+  public edit: boolean;
 
   @Output() dialogDataOutput: EventEmitter<any> = new EventEmitter();
   constructor(private dialogRef: MatDialogRef<CreateProjectDialogComponent>,
@@ -18,6 +19,7 @@ export class CreateProjectDialogComponent implements OnInit {
 
   ngOnInit() {
     this.formObject = this.data.object;
+    this.edit = this.data.edit;
   }
 
   onCloseDialog(value?: any) {

@@ -17,6 +17,7 @@
                     color="primary"
                     matTooltip="Edit"
                     matTooltipClass="tooltip-bg"
+                    (click)="onInitDialog(project, true)"
             >
               <fa-icon [icon]="icons.edit"></fa-icon>
             </button>
@@ -24,6 +25,7 @@
                     color="warn"
                     matTooltip="Delete"
                     matTooltipClass="tooltip-bg"
+                    (click)="deleteProject(project.id)"
             >
               <fa-icon [icon]="icons.delete"></fa-icon>
             </button>
@@ -40,7 +42,7 @@
           <button mat-fab
                   color="primary"
                   class="card-content-btn"
-                  (click)="initDialog()"
+                  (click)="onInitDialog(emptyProjectForm, false)"
           >
             <fa-icon [size]="size" [icon]="icons.create"></fa-icon>
           </button>

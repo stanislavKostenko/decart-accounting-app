@@ -19,7 +19,7 @@ export class FormService {
           const control = new FormControl(object[key], [Validators.required]);
           form.addControl(key, control);
         }
-        if (object[key]) {
+        if (typeof object[key] === 'object') {
           const keyForm = new FormGroup({});
           form.addControl(key, keyForm);
           this.generateForm(keyForm, object[key]);

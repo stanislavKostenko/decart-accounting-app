@@ -9,6 +9,7 @@
   </div>
   <div class="dialog-content">
     <app-form [object]="formObject"
+              [edit]="edit"
               (formValue)="onCloseDialog($event)"
     ></app-form>
   </div>
