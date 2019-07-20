@@ -1,4 +1,31 @@
 <div class="page">
+  <div class="page-button" *ngIf="(projects$ | async).length">
+    <button mat-fab
+            color="primary"
+            matTooltip="Add project"
+            matTooltipClass="tooltip-bg"
+            [matTooltipPosition]="'left'"
+            (click)="onInitDialog(emptyProjectForm, false)"
+    >
+      <fa-icon [size]="size" [icon]="icons.create"></fa-icon>
+    </button>
+  </div>
+  <div class="page-container" *ngIf="!(projects$ | async).length">
+    <div class="page-container-card">
+      <app-card>
+        <ng-container ngProjectAs="title">Add project</ng-container>
+        <ng-container ngProjectAs="content">
+          <button mat-fab
+                  color="primary"
+                  class="card-content-btn"
+                  (click)="onInitDialog(emptyProjectForm, false)"
+          >
+            <fa-icon [size]="size" [icon]="icons.create"></fa-icon>
+          </button>
+        </ng-container>
+      </app-card>
+    </div>
+  </div>
   <div class="page-container" *ngIf="projects$ | async as projects">
     <div class="page-container-card" *ngFor="let project of projects">
       <app-card>
@@ -10,6 +37,8 @@
                     color="accent"
                     matTooltip="Archived"
                     matTooltipClass="tooltip-bg"
+                    (click)="onArchiveProject(project.id)"
+                    [disabled]="project.archived"
             >
               <fa-icon [icon]="icons.archive"></fa-icon>
             </button>
@@ -18,6 +47,7 @@
                     matTooltip="Edit"
                     matTooltipClass="tooltip-bg"
                     (click)="onInitDialog(project, true)"
+                    [disabled]="project.archived"
             >
               <fa-icon [icon]="icons.edit"></fa-icon>
             </button>
@@ -30,22 +60,6 @@
               <fa-icon [icon]="icons.delete"></fa-icon>
             </button>
           </div>
-        </ng-container>
-      </app-card>
-    </div>
-  </div>
-  <div class="page-container">
-    <div class="page-container-card">
-      <app-card>
-        <ng-container ngProjectAs="title">Add project</ng-container>
-        <ng-container ngProjectAs="content">
-          <button mat-fab
-                  color="primary"
-                  class="card-content-btn"
-                  (click)="onInitDialog(emptyProjectForm, false)"
-          >
-            <fa-icon [size]="size" [icon]="icons.create"></fa-icon>
-          </button>
         </ng-container>
       </app-card>
     </div>

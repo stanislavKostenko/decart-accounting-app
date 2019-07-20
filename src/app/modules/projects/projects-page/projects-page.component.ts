@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
 import * as fromProjects from '../../../store/reducers/projects.reducer';
 import {Icons} from '../../../enums/icons';
 import {Project} from '../../../interfaces/project';
-import {CreateProject, DeleteProject, LoadProjects} from '../../../store/actions/projects.actions';
+import {ArchiveProject, CreateProject, DeleteProject, LoadProjects, UpdateProject} from '../../../store/actions/projects.actions';
 import {selectProjects} from '../../../store/selectors/projects.selectors';
 import {CreateProjectDialogComponent} from '../../../shared/create-project-dialog/create-project-dialog.component';
 import {emptyProjectForm} from '../../../mocks/form.mocks';
@@ -73,10 +73,15 @@ export class ProjectsPageComponent implements OnInit {
 
   updateProject(project: Project, projectId: string) {
     project.id = projectId;
+    this.store.dispatch(new UpdateProject(project));
   }
 
   deleteProject(projectId: string) {
     this.store.dispatch(new DeleteProject(projectId));
+  }
+
+  onArchiveProject(id: string, archived: boolean = true) {
+    this.store.dispatch(new ArchiveProject({id, archived}));
   }
 
 }

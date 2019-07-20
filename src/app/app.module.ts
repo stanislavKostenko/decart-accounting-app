@@ -18,6 +18,8 @@ import {environment} from '../environments/environment';
 import {CustomSerializer} from './custom-route-serializer';
 import {ProjectsEffects} from './store/effects/projects.effects';
 import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule} from 'ngx-toastr';
+import {ToastComponent} from './shared/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +41,17 @@ import {HttpClientModule} from '@angular/common/http';
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer,
       navigationActionTiming: NavigationActionTiming.PostActivation,
+    }),
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      toastComponent: ToastComponent
     })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ToastComponent]
 })
 export class AppModule {
 }

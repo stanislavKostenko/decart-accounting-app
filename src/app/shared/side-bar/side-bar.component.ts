@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Icons} from '../../enums/icons';
 import {Router} from '@angular/router';
+import {SizeProp} from '@fortawesome/fontawesome-svg-core';
+
+import {Icons} from '../../enums/icons';
 
 @Component({
   selector: 'app-side-bar',
@@ -9,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class SideBarComponent implements OnInit {
   public icons = Icons;
-  public size: string = 'lg';
+  public size: string = 'lg' as SizeProp;
 
   constructor(private router: Router) {
   }

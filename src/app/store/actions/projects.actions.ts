@@ -1,6 +1,7 @@
 import {Action} from '@ngrx/store';
 import {Project} from '../../interfaces/project';
 import {HttpErrorResponse} from '@angular/common/http';
+import {ProjectArchivePayload} from '../../interfaces/payloads';
 
 export enum ActionTypes {
   LoadProjects = '[Projects Page] Load Projects',
@@ -8,7 +9,8 @@ export enum ActionTypes {
   ProjectsErrors = '[Projects Page] Projects Errors',
   CreateProject = '[Projects Page] Create Project',
   DeleteProject = '[Projects Page] Delete Project',
-  UpdateProject = '[Projects Page] Update Project'
+  UpdateProject = '[Projects Page] Update Project',
+  ArchiveProject = '[Projects Page] Archive Project'
 }
 
 export class LoadProjects implements Action {
@@ -49,5 +51,11 @@ export class DeleteProject implements Action {
   constructor(public payload: string) {}
 }
 
+export class ArchiveProject implements Action {
+  readonly type = ActionTypes.ArchiveProject;
+
+  constructor(public payload: ProjectArchivePayload) {}
+}
+
 export type ProjectsActions = LoadProjects & LoadedProjects & ProjectsErrors
-  & CreateProject & DeleteProject & UpdateProject;
+  & CreateProject & DeleteProject & UpdateProject & ArchiveProject;

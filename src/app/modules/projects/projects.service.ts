@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {Project} from '../../interfaces/project';
 import {map} from 'rxjs/operators';
+import {ProjectArchivePayload} from '../../interfaces/payloads';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,12 @@ export class ProjectsService {
 
   updateProject(project: Project): Observable<Project> {
     return this.http.put<Project>(this.baseUrl + `projects/${project.id}`, project)
+      .pipe(map((response: Project) => response));
+  }
+
+  archiveProject(data: ProjectArchivePayload): Observable<Project> {
+    return this.http.put<Project>(this.baseUrl + `projects/${data.id}/archive`,
+      {archived: data.archived})
       .pipe(map((response: Project) => response));
   }
 }

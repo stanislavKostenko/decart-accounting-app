@@ -18,6 +18,7 @@ import {CardComponent} from './card/card.component';
 import {CreateProjectDialogComponent} from './create-project-dialog/create-project-dialog.component';
 import {FormComponent} from './form/form.component';
 import { AccordionComponent } from './accordion/accordion.component';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AccordionComponent } from './accordion/accordion.component';
     CardComponent,
     CreateProjectDialogComponent,
     FormComponent,
-    AccordionComponent
+    AccordionComponent,
+    ToastComponent
   ],
   imports: [
     CommonModule,
