@@ -20,6 +20,7 @@ import {FormComponent} from './components/form/form.component';
 import {AccordionComponent} from './components/accordion/accordion.component';
 import {ToastComponent} from './components/toast/toast.component';
 import { AddComponent } from './components/add/add.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AddComponent } from './components/add/add.component';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    TranslateModule
   ],
   exports: [
     SideBarComponent,
@@ -56,7 +58,8 @@ import { AddComponent } from './components/add/add.component';
     FormComponent,
     MatInputModule,
     MatExpansionModule,
-    AddComponent
+    AddComponent,
+    TranslateModule
   ]
 })
 export class SharedModule {

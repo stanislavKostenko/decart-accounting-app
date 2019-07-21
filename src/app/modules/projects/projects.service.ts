@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-import {environment} from '../../../environments/environment';
-import {Project} from '../../interfaces/project';
+import {environment} from '@env/environment';
+import {Address, Project} from '@interfaces/project';
 import {map} from 'rxjs/operators';
-import {ProjectArchivePayload} from '../../interfaces/payloads';
+import {ProjectArchivePayload} from '@interfaces/payloads';
 
 @Injectable({
   providedIn: 'root'

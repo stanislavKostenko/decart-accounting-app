@@ -1,7 +1,9 @@
 <div class="dialog">
   <div class="dialog-header">
     <div class="dialog-header-title">
-      <h3 class="dialog-header-title-text">{{dialogType | titlecase}} {{pageType}}</h3>
+      <h3 class="dialog-header-title-text">
+        {{(dialogType | translate: {value: (pageType | translate).toLowerCase()})}}
+      </h3>
       <button mat-icon-button (click)="onCloseDialog()">
         <fa-icon [size]="'lg'" [icon]="icons.close"></fa-icon>
       </button>
@@ -16,20 +18,23 @@
 
     <ng-template #message>
       <div class="message">
-        <span>Are you sure that you want to {{dialogType}} {{object.title}}?</span>
+        <span [innerHTML]="'dialogQuestion' | translate: {
+          dialogType: (dialogType | translate: {value: ''}).toLowerCase(),
+          object: object.title
+        } "></span>
       </div>
       <div class="message-actions">
         <button mat-raised-button
                 color="primary"
                 (click)="onCloseDialog()"
         >
-          Cancel
+          {{'cancel' | translate}}
         </button>
         <button mat-raised-button
                 [color]="dialogType === 'archive' ? 'accent' : 'warn'"
                 (click)="onCloseDialog({dialogType: dialogType})"
         >
-          {{dialogType | titlecase}}
+          {{dialogType | translate: {value: ''} }}
         </button>
       </div>
     </ng-template>

@@ -5,5 +5,6 @@ export enum FormFields {
   Square = 'square',
   CreatedDate = 'createdDate',
   Archived = 'archived',
-  UpdatedDate = 'updatedDate'
+  UpdatedDate = 'updatedDate',
+  Description = 'description'
 }

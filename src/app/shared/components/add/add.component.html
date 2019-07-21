@@ -1,18 +1,18 @@
-<div class="page-button" *ngIf="items?.length">
+<div class="page-button" *ngIf="items && items?.length">
   <button mat-fab
           color="primary"
-          matTooltip="Add project"
-          matTooltipClass="tooltip-bg"
+          [matTooltip]="('add' | translate: {value: (pageType | translate).toLowerCase()})"
+          matTooltipClass="tooltip-bg-btn"
           [matTooltipPosition]="'left'"
           (click)="onCreate()"
   >
     <fa-icon [size]="'lg'" [icon]="icons.create"></fa-icon>
   </button>
 </div>
-<div class="page-container" *ngIf="!items?.length">
+<div class="page-container" *ngIf="items && !items?.length">
   <div class="page-container-card">
     <app-card>
-      <ng-container ngProjectAs="title">Add {{pageType}}</ng-container>
+      <ng-container ngProjectAs="title">{{ ('add' | translate: {value: (pageType | translate).toLowerCase()}) }}</ng-container>
       <ng-container ngProjectAs="content">
         <button mat-fab
                 color="primary"

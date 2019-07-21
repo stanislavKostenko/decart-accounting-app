@@ -1,7 +1,7 @@
 <mat-toolbar class="side-nav">
   <ul class="side-nav-list">
     <li class="side-nav-list-item"
-        matTooltip="Projects"
+        [matTooltip]="('projects' | translate)"
         matTooltipClass="tooltip-bg"
         [matTooltipPosition]="'right'"
         [routerLink]="['projects']"
@@ -11,7 +11,7 @@
       <fa-icon [size]="size" [icon]="icons.home"></fa-icon>
     </li>
     <li class="side-nav-list-item"
-        matTooltip="Price list"
+        [matTooltip]="('priceList' | translate)"
         matTooltipClass="tooltip-bg"
         [matTooltipPosition]="'right'"
         [routerLink]="['price-list']"
@@ -20,7 +20,7 @@
       <fa-icon [size]="size" [icon]="icons.priceList"></fa-icon>
     </li>
     <li class="side-nav-list-item"
-        matTooltip="Estimates"
+        [matTooltip]="('estimates' | translate)"
         matTooltipClass="tooltip-bg"
         [matTooltipPosition]="'right'"
         [routerLink]="['estimates']"
@@ -29,16 +29,25 @@
       <fa-icon [size]="size" [icon]="icons.estimate"></fa-icon>
     </li>
     <li class="side-nav-list-item"
-        matTooltip="Chart"
+        [matTooltip]="('categories' | translate)"
         matTooltipClass="tooltip-bg"
         [matTooltipPosition]="'right'"
-        [routerLink]="['chart']"
+        [routerLink]="['categories']"
+        [routerLinkActive]="['link-active']"
+    >
+      <fa-icon [size]="size" [icon]="icons.categories"></fa-icon>
+    </li>
+    <li class="side-nav-list-item"
+        [matTooltip]="('chart' | translate)"
+        matTooltipClass="tooltip-bg"
+        [matTooltipPosition]="'right'"
+        [routerLink]="['charts']"
         [routerLinkActive]="['link-active']"
     >
       <fa-icon [size]="size" [icon]="icons.chart"></fa-icon>
     </li>
     <li class="side-nav-list-item"
-        matTooltip="Settings"
+        [matTooltip]="('settings' | translate)"
         matTooltipClass="tooltip-bg"
         [matTooltipPosition]="'right'"
         [routerLink]="['settings']"

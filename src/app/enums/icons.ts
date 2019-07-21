@@ -2,7 +2,7 @@ import {
   faArchive,
   faCalculator,
   faChartPie,
-  faCog,
+  faCog, faCubes,
   faFileInvoiceDollar,
   faHome,
   faPen,
@@ -20,5 +20,6 @@ export const Icons = {
   delete: faTrash,
   edit: faPen,
   archive: faArchive,
-  close: faTimes
+  close: faTimes,
+  categories: faCubes
 };

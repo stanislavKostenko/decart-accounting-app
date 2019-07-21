@@ -1,4 +1,10 @@
 @import "abstracts/variables";
 .tooltip-bg {
   background-color: $dark;
+  @include fontSize($base-font-size);
+
+  &-btn {
+    background-color: $dark;
+    @include fontSize($sm-font-size);
+  }
 }

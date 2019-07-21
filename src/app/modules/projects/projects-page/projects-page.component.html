@@ -9,14 +9,20 @@
         <ng-container ngProjectAs="title">{{project.title}}</ng-container>
         <ng-container ngProjectAs="content">
           <div class="description">{{project.description}}</div>
-          <div class="description">Square: {{project.square}}m2</div>
+          <div class="square">{{'square' | translate}}: {{project.square}}m2</div>
+          <ul class="address" *ngIf="project.address">
+            {{'address' | translate}}
+            <li *ngFor="let item of project.address | keyvalue: sortNull">
+              {{item.key | translate}}: {{item.value}}
+            </li>
+          </ul>
         </ng-container>
         <ng-container ngProjectAs="actions">
           <div class="page-container-card-actions">
             <button mat-mini-fab
                     color="accent"
-                    matTooltip="Archived"
-                    matTooltipClass="tooltip-bg"
+                    [matTooltip]="('archive' | translate: {value: ''})"
+                    matTooltipClass="tooltip-bg-btn"
                     (click)="onInitDialog(dialogTypes.ARCHIVE, project)"
                     [disabled]="project.archived"
             >
@@ -24,8 +30,8 @@
             </button>
             <button mat-mini-fab
                     color="primary"
-                    matTooltip="Edit"
-                    matTooltipClass="tooltip-bg"
+                    [matTooltip]="('update' | translate: {value: ''})"
+                    matTooltipClass="tooltip-bg-btn"
                     (click)="onInitDialog(dialogTypes.UPDATE, project)"
                     [disabled]="project.archived"
             >
@@ -33,8 +39,8 @@
             </button>
             <button mat-mini-fab
                     color="warn"
-                    matTooltip="Delete"
-                    matTooltipClass="tooltip-bg"
+                    [matTooltip]="('delete' | translate: {value: ''})"
+                    matTooltipClass="tooltip-bg-btn"
                     (click)="onInitDialog(dialogTypes.DELETE, project)"
             >
               <fa-icon [icon]="icons.delete"></fa-icon>

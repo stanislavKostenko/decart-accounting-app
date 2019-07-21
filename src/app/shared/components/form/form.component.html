@@ -1,20 +1,24 @@
 <div class="form" *ngIf="form" [formGroup]="form" >
   <ng-container *ngFor="let control of controls" [ngSwitch]="control">
     <mat-form-field *ngSwitchDefault class="form-field" appearance="outline">
-      <mat-label>{{control | titlecase}}</mat-label>
+      <mat-label>{{control | translate}}</mat-label>
       <input matInput type="text" [formControlName]="control">
     </mat-form-field>
+    <mat-form-field *ngSwitchCase="fields.Description" class="form-field" appearance="outline">
+      <mat-label>{{control | translate}}</mat-label>
+      <textarea rows="5" matInput type="text" [formControlName]="control"></textarea>
+    </mat-form-field>
     <mat-form-field *ngSwitchCase="fields.Square" class="form-field" appearance="outline">
-      <mat-label>{{control | titlecase}}</mat-label>
+      <mat-label>{{control | translate}}</mat-label>
       <input matInput type="number" [formControlName]="control">
     </mat-form-field>
   </ng-container>
   <app-accordion *ngIf="object.address" [formGroupName]="'address'">
-    <ng-container ngProjectAs="title">Address</ng-container>
+    <ng-container ngProjectAs="title">{{'address' | translate}}</ng-container>
     <ng-container ngProjectAs="content">
       <ng-container *ngFor="let item of addressControls">
         <mat-form-field class="form-field" appearance="outline">
-          <mat-label>{{item | titlecase}}</mat-label>
+          <mat-label>{{item | translate}}</mat-label>
           <input matInput type="text" [formControlName]="item">
         </mat-form-field>
       </ng-container>
@@ -25,6 +29,6 @@
             color="primary"
             class="btn w-100"
             (click)="onSubmit()"
-    >Save</button>
+    >{{'save' | translate}}</button>
   </div>
 </div>

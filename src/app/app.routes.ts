@@ -18,6 +18,16 @@ export const routes: Routes = [
       .then((module) => module.EstimatesModule)
   },
   {
+    path: 'categories',
+    loadChildren: () => import('./modules/categories/categories.module')
+      .then((module) => module.CategoriesModule)
+  },
+  {
+    path: 'charts',
+    loadChildren: () => import('./modules/chart/chart.module')
+      .then((module) => module.ChartModule)
+  },
+  {
     path: 'settings',
     loadChildren: () => import('./modules/settings/settings.module')
       .then((module) => module.SettingsModule)

@@ -13,6 +13,7 @@ import {emptyProjectForm} from '@mocks/form.mocks';
 import {DialogService} from '@shared/services/dialog.service';
 import {DialogType} from '@enums/dialog';
 import {PageType} from '@enums/pages';
+import {ProjectsService} from '@projects/projects.service';
 
 @Component({
   selector: 'app-projects-page',
@@ -95,5 +96,7 @@ export class ProjectsPageComponent implements OnInit {
   archiveProject(id: string, archived: boolean = true) {
     this.store.dispatch(new ArchiveProject({id, archived}));
   }
+
+  sortNull() {}
 
 }
