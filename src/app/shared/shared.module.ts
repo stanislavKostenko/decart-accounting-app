@@ -13,21 +13,23 @@ import {RouterModule} from '@angular/router';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ReactiveFormsModule} from '@angular/forms';
 
-import {SideBarComponent} from './side-bar/side-bar.component';
-import {CardComponent} from './card/card.component';
-import {CreateProjectDialogComponent} from './create-project-dialog/create-project-dialog.component';
-import {FormComponent} from './form/form.component';
-import { AccordionComponent } from './accordion/accordion.component';
-import { ToastComponent } from './toast/toast.component';
+import {SideBarComponent} from './components/side-bar/side-bar.component';
+import {CardComponent} from './components/card/card.component';
+import {DialogComponent} from './components/form-dialog/dialog.component';
+import {FormComponent} from './components/form/form.component';
+import {AccordionComponent} from './components/accordion/accordion.component';
+import {ToastComponent} from './components/toast/toast.component';
+import { AddComponent } from './components/add/add.component';
 
 @NgModule({
   declarations: [
     SideBarComponent,
     CardComponent,
-    CreateProjectDialogComponent,
+    DialogComponent,
     FormComponent,
     AccordionComponent,
-    ToastComponent
+    ToastComponent,
+    AddComponent,
   ],
   imports: [
     CommonModule,
@@ -49,11 +51,12 @@ import { ToastComponent } from './toast/toast.component';
     MatButtonModule,
     MatTooltipModule,
     MatDialogModule,
-    CreateProjectDialogComponent,
+    DialogComponent,
     MatFormFieldModule,
     FormComponent,
     MatInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    AddComponent
   ]
 })
 export class SharedModule {

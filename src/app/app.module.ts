@@ -5,21 +5,22 @@ import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {StoreModule} from '@ngrx/store';
 import {NavigationActionTiming, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {ToastrModule} from 'ngx-toastr';
+import {HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {SharedModule} from './shared/shared.module';
-import {ProjectsModule} from './modules/projects/projects.module';
-import {PriceListModule} from './modules/price-list/price-list.module';
-import {EstimatesModule} from './modules/estimates/estimates.module';
+import {SharedModule} from '@shared/shared.module';
+import {ProjectsModule} from '@projects/projects.module';
+import {PriceListModule} from '@price-list/price-list.module';
+import {EstimatesModule} from '@estimates/estimates.module';
 import {SettingsModule} from './modules/settings/settings.module';
-import {reducers, metaReducers} from './reducers';
-import {environment} from '../environments/environment';
+import {metaReducers, reducers} from './reducers';
+import {environment} from '@env/environment';
 import {CustomSerializer} from './custom-route-serializer';
-import {ProjectsEffects} from './store/effects/projects.effects';
-import {HttpClientModule} from '@angular/common/http';
-import {ToastrModule} from 'ngx-toastr';
-import {ToastComponent} from './shared/toast/toast.component';
+import {ProjectsEffects} from '@store/effects/projects.effects';
+import {ToastComponent} from '@shared/components/toast/toast.component';
+import {DialogComponent} from '@shared/components/form-dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import {ToastComponent} from './shared/toast/toast.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ToastComponent]
+  entryComponents: [ToastComponent, DialogComponent],
 })
 export class AppModule {
 }

@@ -3,14 +3,16 @@ import {select, Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
-import * as fromProjects from '../../../store/reducers/projects.reducer';
-import {Icons} from '../../../enums/icons';
-import {Project} from '../../../interfaces/project';
-import {ArchiveProject, CreateProject, DeleteProject, LoadProjects, UpdateProject} from '../../../store/actions/projects.actions';
-import {selectProjects} from '../../../store/selectors/projects.selectors';
-import {CreateProjectDialogComponent} from '../../../shared/create-project-dialog/create-project-dialog.component';
-import {emptyProjectForm} from '../../../mocks/form.mocks';
-import {DialogService} from '../../../shared/services/dialog.service';
+import * as fromProjects from '@store/reducers/projects.reducer';
+import {Icons} from '@enums/icons';
+import {Project} from '@interfaces/project';
+import {ArchiveProject, CreateProject, DeleteProject, LoadProjects, UpdateProject} from '@store/actions/projects.actions';
+import {selectProjects} from '@store/selectors/projects.selectors';
+import {DialogComponent} from '@shared/components/form-dialog/dialog.component';
+import {emptyProjectForm} from '@mocks/form.mocks';
+import {DialogService} from '@shared/services/dialog.service';
+import {DialogType} from '@enums/dialog';
+import {PageType} from '@enums/pages';
 
 @Component({
   selector: 'app-projects-page',
@@ -22,6 +24,8 @@ export class ProjectsPageComponent implements OnInit {
   public size: string = 'lg';
   public projects$: Observable<Project[]>;
   public emptyProjectForm = emptyProjectForm;
+  public dialogTypes = DialogType;
+  public pageTypes = PageType;
 
   @ViewChild('projectsPage', {static: true}) projectsPage: ElementRef;
 
@@ -44,8 +48,12 @@ export class ProjectsPageComponent implements OnInit {
     this.store.dispatch(new LoadProjects());
   }
 
-  onInitDialog(object: Project, edit: boolean) {
-    const dialogRef = this.dialogService.openDialog(CreateProjectDialogComponent, {object, edit});
+  onInitDialog(dialogType: string, object?: Project) {
+    const dialogRef = this.dialogService.openDialog(DialogComponent, {
+      object,
+      dialogType,
+      pageType: this.pageTypes.PROJECT
+    });
     this.handleDialogData(dialogRef, object.id);
   }
 
@@ -58,12 +66,16 @@ export class ProjectsPageComponent implements OnInit {
     });
   }
 
-  resultCase(result: { formValue: Project, edit: boolean }, projectId: string) {
-    switch (result.edit) {
-      case false:
+  resultCase(result: { formValue: Project, dialogType: string }, projectId: string) {
+    switch (result.dialogType) {
+      case this.dialogTypes.CREATE:
         return this.createProject(result.formValue);
-      default:
+      case this.dialogTypes.UPDATE:
         return this.updateProject(result.formValue, projectId);
+      case this.dialogTypes.DELETE:
+        return this.deleteProject(projectId);
+      case this.dialogTypes.ARCHIVE:
+        return this.archiveProject(projectId);
     }
   }
 
@@ -80,7 +92,7 @@ export class ProjectsPageComponent implements OnInit {
     this.store.dispatch(new DeleteProject(projectId));
   }
 
-  onArchiveProject(id: string, archived: boolean = true) {
+  archiveProject(id: string, archived: boolean = true) {
     this.store.dispatch(new ArchiveProject({id, archived}));
   }
 

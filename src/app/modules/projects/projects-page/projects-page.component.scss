@@ -9,12 +9,7 @@
 .page {
   overflow: hidden;
   position: relative;
-  &-button {
-    position: fixed;
-    bottom: $base-padding;
-    right: $base-padding;
-    z-index: 10000;
-  }
+
   &-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

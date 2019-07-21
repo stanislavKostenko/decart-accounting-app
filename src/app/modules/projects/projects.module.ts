@@ -4,8 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 import {ProjectsPageComponent} from './projects-page/projects-page.component';
-import {SharedModule} from '../../shared/shared.module';
-import {CreateProjectDialogComponent} from '../../shared/create-project-dialog/create-project-dialog.component';
+import {SharedModule} from '@shared/shared.module';
 
 const routes: Routes = [
   {
@@ -22,7 +21,6 @@ const routes: Routes = [
     FontAwesomeModule,
     SharedModule
   ],
-  entryComponents: [CreateProjectDialogComponent]
 })
 export class ProjectsModule {
 }

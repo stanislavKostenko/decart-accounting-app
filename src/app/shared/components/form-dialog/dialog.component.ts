@@ -1,25 +1,28 @@
 import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Icons} from '../../enums/icons';
+
+import {Icons} from '@enums/icons';
 
 @Component({
   selector: 'app-create-project-dialog',
-  templateUrl: './create-project-dialog.component.html',
-  styleUrls: ['./create-project-dialog.component.scss']
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.scss']
 })
-export class CreateProjectDialogComponent implements OnInit {
+export class DialogComponent implements OnInit {
   public icons = Icons;
-  public formObject: any;
-  public edit: boolean;
+  public object: any;
+  public dialogType: string;
+  public pageType: string;
 
   @Output() dialogDataOutput: EventEmitter<any> = new EventEmitter();
-  constructor(private dialogRef: MatDialogRef<CreateProjectDialogComponent>,
+  constructor(private dialogRef: MatDialogRef<DialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
-    this.formObject = this.data.object;
-    this.edit = this.data.edit;
+    this.object = this.data.object;
+    this.dialogType = this.data.dialogType;
+    this.pageType = this.data.pageType;
   }
 
   onCloseDialog(value?: any) {

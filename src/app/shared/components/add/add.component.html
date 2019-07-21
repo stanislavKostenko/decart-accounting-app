@@ -1,0 +1,27 @@
+<div class="page-button" *ngIf="items?.length">
+  <button mat-fab
+          color="primary"
+          matTooltip="Add project"
+          matTooltipClass="tooltip-bg"
+          [matTooltipPosition]="'left'"
+          (click)="onCreate()"
+  >
+    <fa-icon [size]="'lg'" [icon]="icons.create"></fa-icon>
+  </button>
+</div>
+<div class="page-container" *ngIf="!items?.length">
+  <div class="page-container-card">
+    <app-card>
+      <ng-container ngProjectAs="title">Add {{pageType}}</ng-container>
+      <ng-container ngProjectAs="content">
+        <button mat-fab
+                color="primary"
+                class="card-content-btn"
+                (click)="onCreate()"
+        >
+          <fa-icon [size]="'lg'" [icon]="icons.create"></fa-icon>
+        </button>
+      </ng-container>
+    </app-card>
+  </div>
+</div>

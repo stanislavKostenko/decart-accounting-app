@@ -1,10 +1,21 @@
-.mat-fab .mat-button-wrapper {
-  line-height: 1px!important;
+button.mat-fab .mat-button-wrapper {
+  line-height: 1px;
 }
 
-.mat-mini-fab .mat-button-wrapper {
-  padding: 0!important;
-  line-height: inherit!important;
+button.mat-mini-fab .mat-button-wrapper {
+  padding: 0;
+  line-height: normal;
+}
+
+.mat-raised-button .mat-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+button.mat-icon-button {
+  line-height: normal;
 }
 
 .btn {

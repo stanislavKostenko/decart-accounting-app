@@ -1,7 +1,8 @@
+@import "abstracts/variables";
+
 .general-dialog-backdrop {
   overflow: hidden;
-  background-color: rgba(203, 203, 203, 0.66);
-  filter: blur(15px);
+  background-color: rgba(0, 0, 0, 0.91);
 }
 
 .general-box {
@@ -9,13 +10,4 @@
     padding: 16px;
     position: relative;
   }
-}
-
-::ng-deep .ng-animating div mat-accordion mat-expansion-panel mat-expansion-panel-header {
-  height: 48px;
-}
-
-::ng-deep .ng-animating div mat-accordion mat-expansion-panel div.mat-expansion-panel-content {
-  height: 0px;
-  visibility: hidden;
 }

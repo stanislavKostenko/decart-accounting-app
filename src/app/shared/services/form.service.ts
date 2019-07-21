@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {notDisplayedFields} from '../../mocks/form.mocks';
-import {FormFields} from '../../enums/fields';
-import {concat} from 'rxjs';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {notDisplayedFields} from '@mocks/form.mocks';
+import {FormFields} from '@enums/fields';
 
 @Injectable({
   providedIn: 'root'

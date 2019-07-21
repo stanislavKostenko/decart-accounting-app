@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -20,7 +20,13 @@
       "@price-list/*": ["app/modules/price-list/*"],
       "@estimates/*": ["app/modules/estimates/*"],
       "@settings/*": ["app/modules/projects/*"],
-      "@enums/*": ["app/enums/*"]
+      "@enums/*": ["app/enums/*"],
+      "@store/*": ["app/store/*"],
+      "@mocks/*": ["app/mocks/*"],
+      "@interfaces/*": ["app/interfaces/*"],
+      "@animations/*": ["app/animations/*"],
+      "@env/*": ["environments/*"],
+      "@global-reducer/*": ["app/reducers/*"]
     },
     "lib": [
       "es2018",

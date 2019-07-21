@@ -1,0 +1,37 @@
+<div class="dialog">
+  <div class="dialog-header">
+    <div class="dialog-header-title">
+      <h3 class="dialog-header-title-text">{{dialogType | titlecase}} {{pageType}}</h3>
+      <button mat-icon-button (click)="onCloseDialog()">
+        <fa-icon [size]="'lg'" [icon]="icons.close"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="dialog-content">
+    <app-form [object]="object"
+              [dialogType]="dialogType"
+              (formValue)="onCloseDialog($event)"
+              *ngIf="dialogType === 'create' || dialogType === 'update'; else: message"
+    ></app-form>
+
+    <ng-template #message>
+      <div class="message">
+        <span>Are you sure that you want to {{dialogType}} {{object.title}}?</span>
+      </div>
+      <div class="message-actions">
+        <button mat-raised-button
+                color="primary"
+                (click)="onCloseDialog()"
+        >
+          Cancel
+        </button>
+        <button mat-raised-button
+                [color]="dialogType === 'archive' ? 'accent' : 'warn'"
+                (click)="onCloseDialog({dialogType: dialogType})"
+        >
+          {{dialogType | titlecase}}
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</div>

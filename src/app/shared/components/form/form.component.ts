@@ -1,7 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormService} from '../services/form.service';
 import {FormGroup} from '@angular/forms';
-import {FormFields} from '../../enums/fields';
+
+import {FormFields} from '@enums/fields';
+import {FormService} from '../../services/form.service';
+
 
 @Component({
   selector: 'app-form',
@@ -15,7 +17,7 @@ export class FormComponent implements OnInit {
   public fields = FormFields;
 
   @Input() object: any;
-  @Input() edit: boolean;
+  @Input() dialogType: string;
   @Output() formValue: EventEmitter<any> = new EventEmitter();
 
   constructor(private formService: FormService) {
@@ -41,7 +43,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.formValue.next({formValue: this.form.value, edit: this.edit});
+    this.formValue.next({formValue: this.form.value, dialogType: this.dialogType});
   }
 
 }

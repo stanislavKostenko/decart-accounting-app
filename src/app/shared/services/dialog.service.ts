@@ -9,7 +9,7 @@ export class DialogService {
   constructor(private dialog: MatDialog) {
   }
 
-  openDialog(component: any, data: any) {
+  openDialog(component: any, data?: any) {
     const config: MatDialogConfig = this.getDialogConfig(data);
     return this.dialog.open(component, config);
   }

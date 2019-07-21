@@ -1,5 +1,5 @@
-import {Address, Project} from '../interfaces/project';
-import {FormFields} from '../enums/fields';
+import {Address, Project} from '@interfaces/project';
+import {FormFields} from '@enums/fields';
 
 export const emptyAddressForm: Address = {
   city: '',
@@ -21,4 +21,5 @@ export const notDisplayedFields = [
   FormFields._Id,
   FormFields.CreatedDate,
   FormFields.Archived,
+  FormFields.UpdatedDate
 ];

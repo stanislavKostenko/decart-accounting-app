@@ -1,5 +1,5 @@
-@import "abstracts/variables";
-@import "abstracts/mixins";
+@import "../../../../scss/abstracts/variables";
+@import "../../../../scss/abstracts/mixins";
 
 .dialog {
   display: flex;
@@ -20,5 +20,19 @@
   &-actions {
     justify-self: flex-end;
     @include margin($base-margin, null, null, null)
+  }
+
+  .message {
+    @include padding($base-margin, null, $base-margin, null)
+  }
+
+  .message-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    button {
+      width: 47%;
+
+    }
   }
 }

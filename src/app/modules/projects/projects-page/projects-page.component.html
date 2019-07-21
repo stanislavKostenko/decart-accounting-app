@@ -1,43 +1,23 @@
 <div class="page">
-  <div class="page-button" *ngIf="(projects$ | async).length">
-    <button mat-fab
-            color="primary"
-            matTooltip="Add project"
-            matTooltipClass="tooltip-bg"
-            [matTooltipPosition]="'left'"
-            (click)="onInitDialog(emptyProjectForm, false)"
-    >
-      <fa-icon [size]="size" [icon]="icons.create"></fa-icon>
-    </button>
-  </div>
-  <div class="page-container" *ngIf="!(projects$ | async).length">
-    <div class="page-container-card">
-      <app-card>
-        <ng-container ngProjectAs="title">Add project</ng-container>
-        <ng-container ngProjectAs="content">
-          <button mat-fab
-                  color="primary"
-                  class="card-content-btn"
-                  (click)="onInitDialog(emptyProjectForm, false)"
-          >
-            <fa-icon [size]="size" [icon]="icons.create"></fa-icon>
-          </button>
-        </ng-container>
-      </app-card>
-    </div>
-  </div>
+  <app-add [items]="projects$ | async"
+           [pageType]="pageTypes.PROJECT"
+           (create)="onInitDialog(dialogTypes.CREATE, emptyProjectForm)"
+  ></app-add>
   <div class="page-container" *ngIf="projects$ | async as projects">
     <div class="page-container-card" *ngFor="let project of projects">
       <app-card>
         <ng-container ngProjectAs="title">{{project.title}}</ng-container>
-        <ng-container ngProjectAs="content">{{project.description}}</ng-container>
+        <ng-container ngProjectAs="content">
+          <div class="description">{{project.description}}</div>
+          <div class="description">Square: {{project.square}}m2</div>
+        </ng-container>
         <ng-container ngProjectAs="actions">
           <div class="page-container-card-actions">
             <button mat-mini-fab
                     color="accent"
                     matTooltip="Archived"
                     matTooltipClass="tooltip-bg"
-                    (click)="onArchiveProject(project.id)"
+                    (click)="onInitDialog(dialogTypes.ARCHIVE, project)"
                     [disabled]="project.archived"
             >
               <fa-icon [icon]="icons.archive"></fa-icon>
@@ -46,7 +26,7 @@
                     color="primary"
                     matTooltip="Edit"
                     matTooltipClass="tooltip-bg"
-                    (click)="onInitDialog(project, true)"
+                    (click)="onInitDialog(dialogTypes.UPDATE, project)"
                     [disabled]="project.archived"
             >
               <fa-icon [icon]="icons.edit"></fa-icon>
@@ -55,7 +35,7 @@
                     color="warn"
                     matTooltip="Delete"
                     matTooltipClass="tooltip-bg"
-                    (click)="deleteProject(project.id)"
+                    (click)="onInitDialog(dialogTypes.DELETE, project)"
             >
               <fa-icon [icon]="icons.delete"></fa-icon>
             </button>

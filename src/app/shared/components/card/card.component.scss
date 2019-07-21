@@ -1,4 +1,4 @@
-@import 'abstracts/variables';
+@import '../../../../scss/abstracts/variables';
 
 .card {
   height: 100%;
@@ -15,7 +15,8 @@
     max-height: 236px;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    flex-direction: column;
   }
 }

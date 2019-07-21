@@ -1,0 +1,39 @@
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+.page-button {
+  position: fixed;
+  bottom: $base-padding;
+  right: $base-padding;
+  z-index: 900;
+}
+
+.page-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: $base-padding ;
+
+  &-card {
+    width: auto;
+    height: 300px;
+    position: relative;
+
+    &-actions {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        margin-left: $xs-margin;
+        &:first-child {
+          justify-self: flex-start;
+          margin-right: auto;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  .card-content-btn {
+    @include positionCenter();
+  }
+}
