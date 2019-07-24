@@ -1,13 +1,13 @@
-export interface Project {
+export interface ProjectInterface {
   title: string;
   description: string;
   id?: string;
-  address: Address;
+  address: AddressInterface;
   square: number;
   archived?: boolean;
 }
 
-export interface Address {
+export interface AddressInterface {
   city: string;
   street: string;
   houseNumber: string;

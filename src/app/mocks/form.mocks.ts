@@ -1,14 +1,14 @@
-import {Address, Project} from '@interfaces/project';
+import {AddressInterface, ProjectInterface} from '@interfaces/project';
 import {FormFields} from '@enums/fields';
 
-export const emptyAddressForm: Address = {
+export const emptyAddressForm: AddressInterface = {
   city: '',
   street: '',
   houseNumber: null,
   flatNumber: null
 };
 
-export const emptyProjectForm: Project = {
+export const emptyProjectForm: ProjectInterface = {
   title: '',
   description: '',
   square: null,

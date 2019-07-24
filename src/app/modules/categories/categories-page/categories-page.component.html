@@ -1,1 +1,20 @@
-<p>categories-page works!</p>
+<div class="page">
+  <app-add [items]="categories$ | async"
+           [pageType]="pageTypes.CATEGORY"
+  ></app-add>
+  <div class="page-container" *ngIf="categories$ | async as categories">
+    <div class="page-container-card" *ngFor="let category of categories">
+      <app-card>
+        <ng-container ngProjectAs="title">{{category.title}}</ng-container>
+        <ng-container ngProjectAs="content">
+          <div class="description">{{category.description}}</div>
+        </ng-container>
+        <ng-container ngProjectAs="actions">
+          <div class="page-container-card-actions">
+
+          </div>
+        </ng-container>
+      </app-card>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import {Action} from '@ngrx/store';
-import {Project} from '../../interfaces/project';
+import {ProjectInterface} from '@interfaces/project';
 import {HttpErrorResponse} from '@angular/common/http';
-import {ProjectArchivePayload} from '../../interfaces/payloads';
+import {ProjectArchivePayload} from '@interfaces/payloads';
 
 export enum ActionTypes {
   LoadProjects = '[Projects Page] Load Projects',
@@ -20,7 +20,7 @@ export class LoadProjects implements Action {
 export class LoadedProjects implements Action {
   readonly type = ActionTypes.LoadedProjects;
 
-  constructor(public payload: Project[]) {
+  constructor(public payload: ProjectInterface[]) {
   }
 }
 
@@ -34,14 +34,14 @@ export class ProjectsErrors implements Action {
 export class CreateProject implements Action {
   readonly type = ActionTypes.CreateProject;
 
-  constructor(public payload: Project) {
+  constructor(public payload: ProjectInterface) {
   }
 }
 
 export class UpdateProject implements Action {
   readonly type = ActionTypes.UpdateProject;
 
-  constructor(public payload: Project) {
+  constructor(public payload: ProjectInterface) {
   }
 }
 

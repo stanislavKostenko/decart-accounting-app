@@ -24,6 +24,7 @@ import {CustomSerializer} from './custom-route-serializer';
 import {ProjectsEffects} from '@store/effects/projects.effects';
 import {ToastComponent} from '@shared/components/toast/toast.component';
 import {DialogComponent} from '@shared/components/form-dialog/dialog.component';
+import {CategoriesEffects} from '@store/effects/categories.effects';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -45,7 +46,10 @@ export function createTranslateLoader(http: HttpClient) {
     SettingsModule,
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    EffectsModule.forRoot([ProjectsEffects]),
+    EffectsModule.forRoot([
+      ProjectsEffects,
+      CategoriesEffects
+    ]),
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer,
       navigationActionTiming: NavigationActionTiming.PostActivation,

@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 
 import * as fromProjects from '@store/reducers/projects.reducer';
 import {Icons} from '@enums/icons';
-import {Project} from '@interfaces/project';
+import {ProjectInterface} from '@interfaces/project';
 import {ArchiveProject, CreateProject, DeleteProject, LoadProjects, UpdateProject} from '@store/actions/projects.actions';
 import {selectProjects} from '@store/selectors/projects.selectors';
 import {DialogComponent} from '@shared/components/form-dialog/dialog.component';
@@ -13,17 +13,18 @@ import {emptyProjectForm} from '@mocks/form.mocks';
 import {DialogService} from '@shared/services/dialog.service';
 import {DialogType} from '@enums/dialog';
 import {PageType} from '@enums/pages';
-import {ProjectsService} from '@projects/projects.service';
+import {enterLeaveOpacity} from '@animations/general.animation';
 
 @Component({
   selector: 'app-projects-page',
   templateUrl: './projects-page.component.html',
   styleUrls: ['./projects-page.component.scss'],
+  animations: [enterLeaveOpacity]
 })
 export class ProjectsPageComponent implements OnInit {
   public icons = Icons;
   public size: string = 'lg';
-  public projects$: Observable<Project[]>;
+  public projects$: Observable<ProjectInterface[]>;
   public emptyProjectForm = emptyProjectForm;
   public dialogTypes = DialogType;
   public pageTypes = PageType;
@@ -41,7 +42,7 @@ export class ProjectsPageComponent implements OnInit {
   getProjects() {
     this.projects$ = this.store.pipe(
       select(selectProjects),
-      tap((projects: Project[]) => !projects && this.fetchProjects())
+      tap((projects: ProjectInterface[]) => !projects && this.fetchProjects())
     );
   }
 
@@ -49,7 +50,7 @@ export class ProjectsPageComponent implements OnInit {
     this.store.dispatch(new LoadProjects());
   }
 
-  onInitDialog(dialogType: string, object?: Project) {
+  onInitDialog(dialogType: string, object?: ProjectInterface) {
     const dialogRef = this.dialogService.openDialog(DialogComponent, {
       object,
       dialogType,
@@ -67,7 +68,7 @@ export class ProjectsPageComponent implements OnInit {
     });
   }
 
-  resultCase(result: { formValue: Project, dialogType: string }, projectId: string) {
+  resultCase(result: { formValue: ProjectInterface, dialogType: string }, projectId: string) {
     switch (result.dialogType) {
       case this.dialogTypes.CREATE:
         return this.createProject(result.formValue);
@@ -80,11 +81,11 @@ export class ProjectsPageComponent implements OnInit {
     }
   }
 
-  createProject(project: Project) {
+  createProject(project: ProjectInterface) {
     this.store.dispatch(new CreateProject(project));
   }
 
-  updateProject(project: Project, projectId: string) {
+  updateProject(project: ProjectInterface, projectId: string) {
     project.id = projectId;
     this.store.dispatch(new UpdateProject(project));
   }

@@ -1,4 +1,4 @@
-<div class="page-button" *ngIf="items && items?.length">
+<div class="page-button" *ngIf="items && items?.length" [@EnterLeaveRight]>
   <button mat-fab
           color="primary"
           [matTooltip]="('add' | translate: {value: (pageType | translate).toLowerCase()})"

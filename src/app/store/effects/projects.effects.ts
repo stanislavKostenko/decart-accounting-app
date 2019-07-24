@@ -5,14 +5,14 @@ import {catchError, map, mergeMap, switchMap, withLatestFrom} from 'rxjs/operato
 import {of} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 
-import {ProjectsService} from '../../modules/projects/projects.service';
+import {ProjectsService} from '@projects/projects.service';
 import * as fromProjects from '../../store/actions/projects.actions';
-import {Project} from '../../interfaces/project';
+import {ProjectInterface} from '@interfaces/project';
 import {selectProjects} from '../selectors/projects.selectors';
 import {LoadedProjects} from '../actions/projects.actions';
-import {SharedService} from '../../shared/services/shared.service';
-import {MessageService} from '../../shared/services/message.service';
-import {MessageItem, MessageType} from '../../enums/message';
+import {SharedService} from '@shared/services/shared.service';
+import {MessageService} from '@shared/services/message.service';
+import {MessageItem, MessageType} from '@enums/message';
 
 @Injectable()
 export class ProjectsEffects {
@@ -27,7 +27,7 @@ export class ProjectsEffects {
   loadProjects$ = this.actions$.pipe(
     ofType(fromProjects.ActionTypes.LoadProjects),
     mergeMap(() => this.projectsService.getProjects().pipe(
-      map((projects: Project[]) => new fromProjects.LoadedProjects(projects)),
+      map((projects: ProjectInterface[]) => new fromProjects.LoadedProjects(projects)),
       catchError((error: HttpErrorResponse) => of(new fromProjects.ProjectsErrors(error)))
     ))
   );
@@ -39,7 +39,7 @@ export class ProjectsEffects {
       withLatestFrom(this.store.pipe(select(selectProjects))),
       switchMap(([action, projects]: any[]) => this.projectsService.createProject(action.payload)
         .pipe(
-          map((project: Project) => {
+          map((project: ProjectInterface) => {
             if (project) {
               projects.push(project);
               const message = {type: MessageType.CREATE, item: MessageItem.PROJECT};
@@ -82,7 +82,7 @@ export class ProjectsEffects {
       withLatestFrom(this.store.pipe(select(selectProjects))),
       switchMap(([action, projects]: any[]) => this.projectsService.updateProject(action.payload)
         .pipe(
-          map((project: Project) => {
+          map((project: ProjectInterface) => {
             if (project) {
               projects = this.sharedService.mapArrayById(projects, project);
               const message = {type: MessageType.UPDATE, item: MessageItem.PROJECT};

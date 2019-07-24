@@ -1,9 +1,9 @@
-import {Project} from '../../interfaces/project';
+import {ProjectInterface} from '@interfaces/project';
 import {ActionTypes, ProjectsActions} from '../actions/projects.actions';
 import {HttpErrorResponse} from '@angular/common/http';
 
 export interface State {
-  projects: Project[];
+  projects: ProjectInterface[];
   errors: HttpErrorResponse;
 }
 

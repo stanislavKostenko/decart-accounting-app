@@ -6,11 +6,11 @@
 }
 
 @mixin padding($top, $right, $bottom, $left) {
-  padding: $top $right $bottom $left
+  padding: convertToRem($top) convertToRem($right) convertToRem($bottom) convertToRem($left)
 }
 
 @mixin margin($top, $right, $bottom, $left) {
-  margin: $top $right $bottom $left
+  margin: convertToRem($top) convertToRem($right) convertToRem($bottom) convertToRem($left)
 }
 
 @mixin positionCenter() {

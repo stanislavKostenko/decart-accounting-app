@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 import {environment} from '@env/environment';
-import {Address, Project} from '@interfaces/project';
-import {map} from 'rxjs/operators';
+import {ProjectInterface} from '@interfaces/project';
 import {ProjectArchivePayload} from '@interfaces/payloads';
 
 @Injectable({
@@ -16,30 +16,30 @@ export class ProjectsService {
   constructor(private http: HttpClient) {
   }
 
-  getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.baseUrl + 'projects/all').pipe(
-      map((response: Project[]) => response)
+  getProjects(): Observable<ProjectInterface[]> {
+    return this.http.get<ProjectInterface[]>(this.baseUrl + 'projects/all').pipe(
+      map((response: ProjectInterface[]) => response)
     );
   }
 
-  createProject(project: Project): Observable<Project> {
-    return this.http.post<Project>(this.baseUrl + 'projects/create', project)
-      .pipe(map((response: Project) => response));
+  createProject(project: ProjectInterface): Observable<ProjectInterface> {
+    return this.http.post<ProjectInterface>(this.baseUrl + 'projects/create', project)
+      .pipe(map((response: ProjectInterface) => response));
   }
 
-  deleteProject(projectId: string): Observable<Project> {
-    return this.http.delete<Project>(this.baseUrl + `projects/${projectId}`)
+  deleteProject(projectId: string): Observable<ProjectInterface> {
+    return this.http.delete<ProjectInterface>(this.baseUrl + `projects/${projectId}`)
       .pipe(map((response) => response));
   }
 
-  updateProject(project: Project): Observable<Project> {
-    return this.http.put<Project>(this.baseUrl + `projects/${project.id}`, project)
-      .pipe(map((response: Project) => response));
+  updateProject(project: ProjectInterface): Observable<ProjectInterface> {
+    return this.http.put<ProjectInterface>(this.baseUrl + `projects/${project.id}`, project)
+      .pipe(map((response: ProjectInterface) => response));
   }
 
-  archiveProject(data: ProjectArchivePayload): Observable<Project> {
-    return this.http.put<Project>(this.baseUrl + `projects/${data.id}/archive`,
+  archiveProject(data: ProjectArchivePayload): Observable<ProjectInterface> {
+    return this.http.put<ProjectInterface>(this.baseUrl + `projects/${data.id}/archive`,
       {archived: data.archived})
-      .pipe(map((response: Project) => response));
+      .pipe(map((response: ProjectInterface) => response));
   }
 }
