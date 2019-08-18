@@ -1,4 +1,5 @@
 import {Routes} from '@angular/router';
+import {CategoryDetailsPageComponent} from './modules/categories/category-details-page/category-details-page.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '/projects', pathMatch: 'full'},
@@ -21,6 +22,10 @@ export const routes: Routes = [
     path: 'categories',
     loadChildren: () => import('./modules/categories/categories.module')
       .then((module) => module.CategoriesModule)
+  },
+  {
+    path: 'categories/:id',
+    component: CategoryDetailsPageComponent
   },
   {
     path: 'charts',

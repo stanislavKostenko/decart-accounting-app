@@ -1,0 +1,9 @@
+@import "abstracts/variables";
+
+.table {
+  width: 100%;
+
+  &-header {
+    @include fontSize($base-font-size);
+  }
+}

@@ -1,0 +1,14 @@
+<ng-container *ngIf="works$ | async"></ng-container>
+<div class="page">
+  <app-add [items]="works$ | async"
+           [pageType]="pageTypes.WORK"
+           (create)="onInitDialog(dialogTypes.CREATE, emptyWork)"
+  ></app-add>
+  <ng-container *ngIf="works$ | async as works">
+    <app-table [tableData]="works"
+               [displayedColumns]="columns"
+               (handleAction)="handleActions($event)"
+    ></app-table>
+  </ng-container>
+</div>
+

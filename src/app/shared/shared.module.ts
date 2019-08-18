@@ -5,7 +5,7 @@ import {
   MatCardModule,
   MatDialogModule, MatExpansionModule,
   MatFormFieldModule,
-  MatInputModule,
+  MatInputModule, MatSortModule, MatTableModule,
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -19,8 +19,10 @@ import {DialogComponent} from './components/form-dialog/dialog.component';
 import {FormComponent} from './components/form/form.component';
 import {AccordionComponent} from './components/accordion/accordion.component';
 import {ToastComponent} from './components/toast/toast.component';
-import { AddComponent } from './components/add/add.component';
+import {AddComponent} from './components/add/add.component';
 import {TranslateModule} from '@ngx-translate/core';
+import {TableComponent} from './components/table/table.component';
+import {StopPropagationDirective} from '../directives/stop-propagation.directive';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import {TranslateModule} from '@ngx-translate/core';
     AccordionComponent,
     ToastComponent,
     AddComponent,
+    TableComponent,
+    StopPropagationDirective
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,9 @@ import {TranslateModule} from '@ngx-translate/core';
     MatFormFieldModule,
     MatInputModule,
     MatExpansionModule,
-    TranslateModule
+    MatTableModule,
+    TranslateModule,
+    MatSortModule
   ],
   exports: [
     SideBarComponent,
@@ -59,7 +65,10 @@ import {TranslateModule} from '@ngx-translate/core';
     MatInputModule,
     MatExpansionModule,
     AddComponent,
-    TranslateModule
+    TranslateModule,
+    MatTableModule,
+    TableComponent,
+    StopPropagationDirective
   ]
 })
 export class SharedModule {

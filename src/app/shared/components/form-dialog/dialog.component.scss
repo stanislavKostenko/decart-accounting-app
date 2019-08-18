@@ -23,7 +23,8 @@
   }
 
   .message {
-    @include padding($base-margin, null, $base-margin, null)
+    text-align: center;
+    padding: $base-padding 0 $base-padding 0;
   }
 
   .message-actions {

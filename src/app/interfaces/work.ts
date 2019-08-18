@@ -1,9 +1,8 @@
 export interface WorksInterface {
   title: string;
-  costPerItem: number;
   units: string;
-  repeats: boolean;
-  categoryId: string;
+  categoryId?: string;
   createdDate?: string;
   updatedDate?: string;
+  id?: string;
 }

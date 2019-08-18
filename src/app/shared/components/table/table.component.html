@@ -1,0 +1,34 @@
+<mat-table #table [dataSource]="dataSource" class="table">
+  <ng-container *ngFor="let field of displayedColumns" matColumnDef="{{field}}" [ngSwitch]="field">
+    <mat-header-cell
+        *matHeaderCellDef
+        class="table-header"
+        [ngStyle]="{'flex': getActionsWidth(field) && '0 0 10%'}"
+    > {{field | translate: {value: ''} }}
+    </mat-header-cell>
+    <ng-container *ngSwitchDefault>
+      <mat-cell *matCellDef="let element" > {{element[field]}} </mat-cell>
+    </ng-container>
+    <ng-container *ngSwitchCase="tableFields.NUMBER_IN_ORDER">
+      <mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </mat-cell>
+    </ng-container>
+    <!--  ACTIONS START  -->
+    <ng-container *ngSwitchCase="tableFields.UPDATE">
+      <mat-cell *matCellDef="let element" [ngStyle]="{'flex': '0 0 10%'}">
+        <button mat-raised-button color="primary" (click)="onClickAction(element, 'update')">
+          <fa-icon [icon]="icons.edit"></fa-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <ng-container *ngSwitchCase="tableFields.DELETE">
+      <mat-cell *matCellDef="let element" [ngStyle]="{'flex': '0 0 10%'}">
+        <button mat-raised-button color="warn" (click)="onClickAction(element, 'delete')">
+          <fa-icon [icon]="icons.delete"></fa-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <!--  ACTIONS ENDING  -->
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

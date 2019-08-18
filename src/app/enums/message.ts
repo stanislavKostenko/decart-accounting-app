@@ -6,5 +6,7 @@ export enum MessageType {
 }
 
 export enum MessageItem {
-  PROJECT = 'Project'
+  PROJECT = 'Project',
+  CATEGORY = 'Category',
+  WORK = 'Work'
 }

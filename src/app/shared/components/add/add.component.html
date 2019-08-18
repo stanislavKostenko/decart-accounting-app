@@ -12,7 +12,7 @@
 <div class="page-container" *ngIf="items && !items?.length">
   <div class="page-container-card">
     <app-card>
-      <ng-container ngProjectAs="title">{{ ('add' | translate: {value: (pageType | translate).toLowerCase()}) }}</ng-container>
+      <ng-container ngProjectAs="title">{{ ('add' | translate: {value: (pageType | translate: {ending: 'ю'}).toLowerCase()}) }}</ng-container>
       <ng-container ngProjectAs="content">
         <button mat-fab
                 color="primary"

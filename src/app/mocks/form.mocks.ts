@@ -1,5 +1,7 @@
 import {AddressInterface, ProjectInterface} from '@interfaces/project';
 import {FormFields} from '@enums/fields';
+import {CategoryInterface} from '@interfaces/category';
+import {WorksInterface} from '@interfaces/work';
 
 export const emptyAddressForm: AddressInterface = {
   city: '',
@@ -15,11 +17,23 @@ export const emptyProjectForm: ProjectInterface = {
   address: emptyAddressForm
 };
 
+export const emptyCategory: CategoryInterface = {
+  title: '',
+  description: ''
+};
+
+export const emptyWork: WorksInterface = {
+  title: '',
+  units: ''
+};
+
 export const notDisplayedFields = [
   FormFields.Address,
   FormFields.Id,
   FormFields._Id,
   FormFields.CreatedDate,
   FormFields.Archived,
-  FormFields.UpdatedDate
+  FormFields.UpdatedDate,
+  FormFields.Works,
+  FormFields.CategoryId
 ];

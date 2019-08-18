@@ -16,7 +16,7 @@ export class DialogService {
 
   private getDialogConfig(data: any): MatDialogConfig {
     return {
-      maxWidth: '400px',
+      minWidth: '400px',
       panelClass: 'general-box',
       backdropClass: 'general-dialog-backdrop',
       hasBackdrop: true,

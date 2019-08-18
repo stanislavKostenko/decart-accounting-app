@@ -21,5 +21,7 @@
   "city": "Город",
   "street": "Улица",
   "houseNumber": "Дом",
-  "flatNumber": "Квартира"
+  "flatNumber": "Квартира",
+  "category": "Категори{{ending}}",
+  "units": "Единицы измерения"
 }

@@ -1,0 +1,10 @@
+@import 'abstracts/variables';
+
+mat-cell, mat-header-cell {
+  display:flex;
+  justify-content:center;
+  &:first-child {
+    max-width: 50px;
+    padding-right: $xlg-padding - 1;
+  }
+}

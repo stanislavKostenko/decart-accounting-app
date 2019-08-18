@@ -35,7 +35,9 @@ export class FormComponent implements OnInit {
 
   generateControls(form: FormGroup) {
     this.controls = this.formService.createArrayOfControls(form);
-    this.addressControls = this.formService.createArrayOfControls(form.controls.address);
+    if (this.object.address) {
+      this.addressControls = this.formService.createArrayOfControls(form.controls.address);
+    }
   }
 
   get formControls() {

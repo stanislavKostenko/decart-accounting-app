@@ -1,4 +1,5 @@
 export enum PageType {
   PROJECT = 'project',
-  CATEGORY = 'category'
+  CATEGORY = 'category',
+  WORK = 'work'
 }

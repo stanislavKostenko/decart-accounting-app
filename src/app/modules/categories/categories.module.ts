@@ -5,6 +5,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 import {CategoriesPageComponent} from './categories-page/categories-page.component';
 import {SharedModule} from '@shared/shared.module';
+import {CategoryDetailsPageComponent} from './category-details-page/category-details-page.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [CategoriesPageComponent],
+  declarations: [CategoriesPageComponent, CategoryDetailsPageComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

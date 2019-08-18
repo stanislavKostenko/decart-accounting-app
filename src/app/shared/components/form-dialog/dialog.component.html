@@ -2,7 +2,7 @@
   <div class="dialog-header">
     <div class="dialog-header-title">
       <h3 class="dialog-header-title-text">
-        {{(dialogType | translate: {value: (pageType | translate).toLowerCase()})}}
+        {{(dialogType | translate: {value: (pageType | translate: {ending: 'ю'}).toLowerCase()})}}
       </h3>
       <button mat-icon-button (click)="onCloseDialog()">
         <fa-icon [size]="'lg'" [icon]="icons.close"></fa-icon>
